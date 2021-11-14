@@ -1,9 +1,12 @@
 package BaseClass;
 
+import HelperClass.ElementInteraction;
+import HelperClass.RetryRule;
 import ObjectModelClass.HomePage;
 import ObjectModelClass.ItemPage;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
+import com.sun.net.httpserver.Authenticator;
 import com.sun.org.glassfish.gmbal.Description;
 import org.junit.*;
 import org.junit.rules.TestName;
@@ -17,9 +20,12 @@ public class Base {
     public WebDriver driver;
     static public ExtentReports report;
     static public ExtentTest  test;
+    public ElementInteraction interact;
 
 
     @Rule public TestName name= new TestName();
+//    @Rule public RetryRule retryRule = new RetryRule(1);
+
 
     @BeforeClass
     static public void reportBuildUP(){
@@ -35,7 +41,7 @@ public class Base {
 
     @Before
     public void setUp(){
-
+        interact= new ElementInteraction(driver,test);
         test = report.startTest(name.getMethodName());
         test.assignAuthor("Jina Alexandru");
 

@@ -4,6 +4,7 @@ import BaseClass.Base;
 import ObjectModelClass.HomePage;
 import ObjectModelClass.ItemPage;
 import com.relevantcodes.extentreports.LogStatus;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class HomePageTests extends Base {
@@ -24,26 +25,17 @@ public class HomePageTests extends Base {
 11) User can view that Book in the Menu item with price.
 12) User can add a book by clicking on Add To Basket button which adds that book in to his Basket
  */
+
 @Test
 public void HomePageTest6(){
-    homePage = new HomePage(driver);
-    itemPage = new ItemPage(driver);
+    homePage = new HomePage(driver,test);
+    itemPage = new ItemPage(driver,test);
 
     test.log(LogStatus.INFO,"Home Page - Arrivals - Images - Add to Basket");
     homePage.clickOnShopMenu();
-    test.log(LogStatus.PASS," clicked on Shop Menu Item");
-
     homePage.clickOnHomeMenu();
-    test.log(LogStatus.PASS,"Clicked on Home Menu");
-
     homePage.clickOnArrival(0);
-    test.log(LogStatus.PASS,"Clicked on one of the 3 items that are visible");
-
     itemPage.clickOnAddtoBasket();
-    test.log(LogStatus.PASS,"Clicked on add to basket");
-
-
-
 
 }
 

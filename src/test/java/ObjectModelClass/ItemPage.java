@@ -1,6 +1,8 @@
 package ObjectModelClass;
 
 import HelperClass.ElementInteraction;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,11 +14,14 @@ public class ItemPage {
 
     public WebDriver driver;
     public ElementInteraction interact;
+    public ExtentTest test;
 
-    public ItemPage (WebDriver driver){
+
+    public ItemPage (WebDriver driver,ExtentTest test){
         this.driver=driver;
+        this.test=test;
+        interact = new ElementInteraction(driver,test);
         PageFactory.initElements(driver,this);
-        interact = new ElementInteraction(driver);
     }
 
     @FindBy(css=".single_add_to_cart_button.button.alt")
@@ -26,7 +31,8 @@ public class ItemPage {
     public List<WebElement> menuitems;
 
     public void clickOnAddtoBasket(){
-        interact.clickElement(addToBasketElement);
+        interact.clickElement(addToBasketElement,"Add to basket");
+
     }
 
 

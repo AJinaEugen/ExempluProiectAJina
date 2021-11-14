@@ -1,5 +1,8 @@
 package HelperClass;
 
+import BaseClass.Base;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,18 +14,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class ElementInteraction {
 
     public WebDriver driver;
+    public ExtentTest test;
 
-    public ElementInteraction (WebDriver driver){
+    public ElementInteraction (WebDriver driver,ExtentTest test){
         this.driver=driver;
+        this.test=test;
     }
 
-    public void waitUntillElementVisible(WebElement element){
-        new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(element));
-    }
 
-    public void clickElement(WebElement element){
-        waitUntillElementVisible(element);
-        element.click();
+
+    public void clickElement(WebElement element, String elementTxt){
+            waitUntillElementVisible(element);
+            element.click();
+            test.log(LogStatus.PASS,"Clicked on "+elementTxt);
     }
 
     public void sendText(String text, WebElement element){
@@ -69,5 +73,9 @@ public class ElementInteraction {
 
     }
 
+    public void waitUntillElementVisible(WebElement element){
+
+        new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(element));
+    }
 
 }

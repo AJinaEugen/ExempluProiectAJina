@@ -1,6 +1,8 @@
 package ObjectModelClass;
 
 import HelperClass.ElementInteraction;
+import com.relevantcodes.extentreports.ExtentTest;
+import com.relevantcodes.extentreports.LogStatus;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,11 +14,16 @@ public class HomePage {
 
         public WebDriver driver;
         public ElementInteraction interact;
+        public ExtentTest test;
 
-    public HomePage (WebDriver driver){
+
+    public HomePage (WebDriver driver, ExtentTest test){
         this.driver=driver;
+        this.test=test;
         PageFactory.initElements(driver,this);
-        interact = new ElementInteraction(driver);
+
+        interact = new ElementInteraction(driver,test);
+
     }
 
     @FindBy(css=".menu-item")
@@ -27,17 +34,24 @@ public class HomePage {
     public List<WebElement> Arrivals;
 
 
-    public void clickOnShopMenu(){
-        interact.clickElement(menuitems.get(0));
+
+
+    public HomePage clickOnShopMenu(){
+
+        interact.clickElement(menuitems.get(0), "Menu button");
+        return this;
     }
 
-    public void clickOnHomeMenu(){
-        interact.clickElement(home);
+    public HomePage clickOnHomeMenu(){
+        interact.clickElement(home,"Home button");
+        return this;
     }
 
     public ItemPage clickOnArrival(int i){
-        interact.clickElement(Arrivals.get(i));
-        return new ItemPage(driver);
+        interact.clickElement(Arrivals.get(i),"Arrival button");
+        return new ItemPage(driver,test);
     }
+
+
 
 }
