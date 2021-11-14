@@ -1,13 +1,8 @@
 package BaseClass;
-
 import HelperClass.ElementInteraction;
 import HelperClass.RetryRule;
-import ObjectModelClass.HomePage;
-import ObjectModelClass.ItemPage;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
-import com.sun.net.httpserver.Authenticator;
-import com.sun.org.glassfish.gmbal.Description;
 import org.junit.*;
 import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
@@ -24,7 +19,7 @@ public class Base {
 
 
     @Rule public TestName name= new TestName();
-//    @Rule public RetryRule retryRule = new RetryRule(1);
+    @Rule public RetryRule retryRule = new RetryRule(2);
 
 
     @BeforeClass
@@ -51,7 +46,6 @@ public class Base {
         driver.navigate().to("http://practice.automationtesting.in/");
 
         Assert.assertEquals("Pagina incorecta - check title", "Automation Practice Site",driver.getTitle());
-
     }
 
     @After

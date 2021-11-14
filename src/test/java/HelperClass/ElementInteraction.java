@@ -1,6 +1,4 @@
 package HelperClass;
-
-import BaseClass.Base;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 import org.junit.Assert;

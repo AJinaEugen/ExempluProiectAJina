@@ -32,11 +32,16 @@ public void HomePageTest6(){
     itemPage = new ItemPage(driver,test);
 
     test.log(LogStatus.INFO,"Home Page - Arrivals - Images - Add to Basket");
-    homePage.clickOnShopMenu();
-    homePage.clickOnHomeMenu();
-    homePage.clickOnArrival(0);
-    itemPage.clickOnAddtoBasket();
-
+   try{
+        homePage.clickOnShopMenu();
+        homePage.clickOnHomeMenu();
+        homePage.clickOnArrival(0);
+        itemPage.clickOnAddtoBasket();
+   }
+   catch(Exception e){
+       test.log(LogStatus.FAIL, "Home Page - Arrivals - Images - Add to Basket - FAILED");
+       Assert.fail();
+   }
 }
 
 
