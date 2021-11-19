@@ -26,23 +26,52 @@ public class HomePageTests extends Base {
 12) User can add a book by clicking on Add To Basket button which adds that book in to his Basket
  */
 
-@Test
-public void HomePageTest6(){
-    homePage = new HomePage(driver,test);
-    itemPage = new ItemPage(driver,test);
+    @Test
+    public void HomePageTest1() {
+        homePage = new HomePage(driver, test);
+        itemPage = new ItemPage(driver, test);
 
-    test.log(LogStatus.INFO,"Home Page - Arrivals - Images - Add to Basket");
-   try{
-        homePage.clickOnShopMenu();
-        homePage.clickOnHomeMenu();
-        homePage.clickOnArrival(0);
-        itemPage.clickOnAddtoBasket();
-   }
-   catch(Exception e){
-       test.log(LogStatus.FAIL, "Home Page - Arrivals - Images - Add to Basket - FAILED");
-       Assert.fail();
-   }
-}
+        test.log(LogStatus.INFO, "Home Page - Arrivals - Images - Add to Basket");
+        try {
+            homePage.clickOnShopMenu();
+            homePage.clickOnHomeMenu();
+            homePage.clickOnArrival(0);
+            interact.assertText("text1","text2");
+            itemPage.clickOnAddtoBasket();
+        } catch (AssertionError e) {
+            test.log(LogStatus.FAIL, "Assertion failed");
+
+        } catch (Exception e) {
+            test.log(LogStatus.FAIL, "Exception failed");
+        }
+    }
 
 
-}
+    @Test
+    public void HomePageTest2() {
+        homePage = new HomePage(driver, test);
+        itemPage = new ItemPage(driver, test);
+
+        test.log(LogStatus.INFO, "Home Page - Arrivals - Images - Add to Basket");
+        try {
+            homePage.clickOnShopMenu();
+            homePage.clickOnHomeMenu();
+            homePage.clickOnArrival(0);
+            interact.assertText("text1", "text1");
+            itemPage.clickOnAddtoBasket();
+        } catch (AssertionError e) {
+            test.log(LogStatus.FAIL, "Assertion failed");
+            Assert.fail();
+        } catch (Exception e) {
+            test.log(LogStatus.FAIL, "Exception failed");
+            Assert.fail();
+
+
+        }
+
+    }
+
+
+    }
+
+

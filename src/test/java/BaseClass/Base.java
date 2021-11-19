@@ -40,7 +40,7 @@ public class Base {
         test = report.startTest(name.getMethodName());
         test.assignAuthor("Jina Alexandru");
 
-        System.setProperty("webdriver.chrome.driver","C:\\Automation\\Chrome driver\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver","P:\\ProiectAtestat\\src\\chromedriver.exe");
         driver = new ChromeDriver();
         driver.get("http://practice.automationtesting.in/");
         driver.navigate().to("http://practice.automationtesting.in/");

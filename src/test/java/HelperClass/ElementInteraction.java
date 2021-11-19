@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class ElementInteraction {
 
     public WebDriver driver;
@@ -70,10 +72,37 @@ public class ElementInteraction {
         }
 
     }
+    public void assertText(WebElement element, String expected){
+       try {
+           waitUntillElementVisible(element);
+           Assert.assertEquals("Actual text does not match expected text" + element.getText() + " != " + expected, expected, element.getText());
+           test.log(LogStatus.PASS, "The correct elements are displayed");
+       }
+       catch(AssertionError e){
+           test.log(LogStatus.FAIL, "Assertion failed");
+       }
+
+    }
+    public void assertText(String element, String expected){
+
+            Assert.assertEquals("Actual text does not match expected text"+element +" != "+ expected,expected,element);
+
+    }
+
+
+
+
+
+
 
     public void waitUntillElementVisible(WebElement element){
 
         new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public void waitUntillElementVisible(List<WebElement> element, int numarElemente){
+
+        new WebDriverWait(driver,10).until(ExpectedConditions.visibilityOf(element.get(numarElemente)));
     }
 
 }
